@@ -1,0 +1,17 @@
+
+<!-- generate absolute url of static files -->
+{% load static %}
+<!-- link to the polls/style.css static file -->
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+{% if latest_question_list %}
+    <!-- Make list of questions linking to detail view urls-->
+    <ul>
+        {% for question in latest_question_list %}
+            <!-- link to url w/ given name as specified in namespace polls.urls.py w/ some values to capture -->
+            <li><a href="{% url 'polls:detail' question.id %}"> {{ question.question_text }} </a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

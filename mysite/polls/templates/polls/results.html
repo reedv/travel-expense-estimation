@@ -1,0 +1,15 @@
+
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+<!-- display votes for each choice that this question is a key to -->
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<!-- give user chance to cast another vote for this question -->
+<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+<br>
+<br>
+<a href="{% url 'polls:index' %}">Back to questions</a>

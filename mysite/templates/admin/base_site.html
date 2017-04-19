@@ -1,0 +1,17 @@
+<!--
+Overriding django's django/contrib/admin/templates/admin/base_site.html template.
+Note that any of Django’s default admin templates can be overridden.
+Generally, want to use the django.contrib.admin.AdminSite.site_header attribute to
+more easily make this particular customization.
+-->
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('mysite site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}"> MySite Administration </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
